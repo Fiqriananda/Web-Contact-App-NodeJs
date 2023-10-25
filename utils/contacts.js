@@ -19,24 +19,48 @@ const loadContact = () => {
 
 const findContact = (nama) => {
   const contacts = loadContact();
-  const contact = contacts.find((contact) => 
-    contact.nama.toLowerCase() === nama.toLowerCase());
+  const contact = contacts.find(
+    (contact) => contact.nama.toLowerCase() === nama.toLowerCase()
+  );
   return contact;
 };
 
-const saveContact = (contacts) =>{
-  fs.writeFileSync('data/contacts.json', JSON.stringify(contacts))
-}
+const saveContact = (contacts) => {
+  fs.writeFileSync("data/contacts.json", JSON.stringify(contacts));
+};
 
-const addContact = (contact) =>{
+const addContact = (contact) => {
   const contacts = loadContact();
-  contacts.push(contact)
-  saveContact(contacts)
-}
+  contacts.push(contact);
+  saveContact(contacts);
+};
 
-const cekDuplikat = (nama) =>{
+const cekDuplikat = (nama) => {
   const contacs = loadContact();
-  return contacs.find((contac) => contac.nama === nama)
-}
+  return contacs.find((contac) => contac.nama === nama);
+};
 
-module.exports = { loadContact, findContact, addContact, cekDuplikat };
+const deleteContact = (nama) => {
+  const contacts = loadContact();
+  const filteredContact = contacts.filter((contact) => contact.nama !== nama);
+  saveContact(filteredContact);
+};
+
+const updateContact = (contactBaru) => {
+  const contacts = loadContact();
+  const filteredContacts = contacts.filter(
+    (contact) => contact.nama !== contactBaru.oldName
+  );
+  delete contactBaru.oldName
+  filteredContacts.push(contactBaru)
+  saveContact(filteredContacts)
+};
+
+module.exports = {
+  loadContact,
+  findContact,
+  addContact,
+  cekDuplikat,
+  deleteContact,
+  updateContact,
+};

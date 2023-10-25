@@ -1,6 +1,6 @@
 <% if (!contact) { %>
   <div class="alert alert-danger mt-3" role="alert">
-    No Contact <a href="/contact" class="alert-link">&laquo; Back to List</a>. Give it a click if you like.
+    No Contact <a href="/contact" class="alert-link">&laquo; Back to List</a>.
   </div>
 <% }else{ %>
 
@@ -13,6 +13,8 @@
                   <li class="list-group-item"><%= contact.nama %></li>
                   <li class="list-group-item"><%= contact.hp %></li>
                   <li class="list-group-item"><%= contact.email %></li>
+                  <a href="/contact/edit/<%= contact.nama %>" class="btn btn-info mb-3" onclick="return confirm('Apakah Yakin Ingin Update Data')">Update</a>
+                  <a href="/contact/delete/<%= contact.nama %>" class="btn btn-danger" onclick="return confirm('Apakah Yakin Ingin Meng-delete Data')">Delete</a>
                   <li class="list-group-item"><a href="/contact">&laquo; Kembali ke daftar Contact</a></li>
 
                 </ul>

@@ -4,6 +4,12 @@
       <h2>Daftar Kontak</h2>
 
       <a href="/contact/add" class="btn btn-primary">Add Contact</a>
+      
+      <% if (msg.length !== 0) { %>
+        <div class="alert alert-success" role="alert">
+          <%= msg %>
+        </div>
+      <% } %>
 
       <table class="table">
         <thead>
